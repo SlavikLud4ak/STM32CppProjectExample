@@ -1,3 +1,5 @@
+**[English](REAMDE.md)** | [Українська](README_UA.md)
+
 # Example creating and configuration C++ project for STM32
 
 1. Create a clean project using STM32CubeIDE, select MCU/MPU or Board, click `Next`
