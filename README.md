@@ -1,18 +1,17 @@
-# Приклад створення та конфігурування C++ проекту для STM32
+# Example creating and configuration C++ project for STM32
 
-1. Створюємо чистий проект за допомогою STM32CubeIDE, вибираємо MCU/MPU або Board, натискаємо `Next`
-2. Називаємо проект та вибираємо `C++` в розділі **Target Language**. Натискаємо `Finish`
+1. Create a clean project using STM32CubeIDE, select MCU/MPU or Board, click `Next'
+2. Name the project and select ``C++'' in the **Target Language** section. Click `Finish'
    
 ![](img/1.png)
 
-3. В розділі **Project Manager** -> **Code Generator** вибираємо чекбокс `Generate peripheral initialization as a pair of '.c/.h' files per peripheral`. Після цього вся переферія проекту буде ініціалізована в окремих файлах, а не в `main.c`
-
+3. In section **Project Manager** -> **Code Generator** select checkbox `Generate peripheral initialization as a pair of '.c/.h' files per peripheral`. After that, all the peripherals of the project will be initialized in separate files, not in `main.c`
 ![](img/2.png)
 
-4. Налаштовуємо **Clock Configuration** та **Pinout & Configuration**, генеруємо код після налаштування
-5. Створюємо альтернативний main файл. В *Core/Inc* додаємо файл *altMain.hpp*. В *Core/Src* додаємо файл *altMain.cpp*.
+4. Set up **Clock Configuration** and **Pinout & Configuration**, generate code after configuration
+5. Create an alternative main file. In *Core/Inc* add the file *altMain.hpp*. In *Core/Src* add the file *altMain.cpp*.
 
-6. В *altMain.hpp* вставляємо наступний код:
+6. In *altMain.hpp* paste this code:
    
 ```cpp
 #ifndef INC_ALTMAIN_HPP_
@@ -45,12 +44,12 @@ void loop();
 #endif /* INC_ALTMAIN_HPP_ */
 ```
 
-В **YOUR INCLUDES** підключаємо потрібні нам файли, але тільки `C` файли.  `C++` файли підключаємо в *altMain.cpp*.
+IN **YOUR INCLUDES** connect the files we need, but only `C` files. `C++` files are connected in *altMain.cpp*.
 
-В **YOUR FUNCTIONS** прописуємо заголовки потрібних функцій. 
-Я використовую функції `setup()` та `loop()` для написання основного коду.
+In **YOUR FUNCTIONS** we prescribe header of need function. 
+I using function `setup()` and `loop()` for writing general code.
 
-7. В *altMain.cpp* прописуємо наступний код:
+7. In *altMain.cpp* prescribe this code:
 
 ```cpp
 #include "altMain.hpp"
@@ -65,11 +64,11 @@ void loop() {
 }
 ```
 
-**YOUR SETUP CODE** - код, який буде виконуватись один раз перед вічним циклом. Сюди вставляємо конфігурування інтерфейсів, DMA і т.п.
+**YOUR SETUP CODE** - code, which will be debugging one time before infinity loop.In this place paste configuration interface, DMA and etc.
 
-**YOUR LOOP CODE** - основний код нашої програми.
+**YOUR LOOP CODE** - general code our program.
 
-8. В файлі *main.c* підключємо *altMain.hpp* та прописуємо виклики функцій `setup()` та `loop()`:
+8. In file *main.c* connect *altMain.hpp* and writing call function `setup()` та `loop()`:
 
 ```cpp
 // ...
@@ -98,9 +97,9 @@ int main(void)
 // ...
 ```
 
-### Бонус: використання класів C++ в проекті
+### Bonus: using class C++ in project
 
-9. Якщо вам потрібно створити об'єкт класу та використати його в *altMain*, створюємо файли *.hpp* та *.cpp* та описуємо класи:
+9. If you need create object of class and using her in *altMain*, create file *.hpp* and *.cpp*, and description class:
 
 *classExample.hpp*
 ```cpp
@@ -132,7 +131,7 @@ classExample::~classExample() {
 
 ```
 
-10. В файлі *altMain.cpp* підключаємо *classExample.hpp* та створюємо об'єкт класу:
+10. In file *altMain.cpp* connect *classExample.hpp* and creare object of class:
     
 ```cpp
 #include "altMain.hpp"
@@ -150,17 +149,17 @@ void loop() {
 }
 ```
 
-### Увага!
+### WARNING!
 
-Не підключайте *.hpp* файли в *altMain.hpp*, як от наприклад заголовковий файл нашого класу, так як проект перестане білдитись та ви отримаєте помилки 
+Not connecte *.hpp* file in *altMain.hpp*, as for exaple header file our class, so as project will stop building and you get issue 
 
 ```cpp
 expected '=', ',', ';', 'asm' or '__attribute__' before '{' token	classExample.hpp	/ExampleCppProject/Core/Inc	line 11	C/C++ Problem
 ``` 
-а також 
+and also 
 
 ```cpp
 unknown type name 'class'	classExample.hpp	/ExampleCppProject/Core/Inc	line 11	C/C++ Problem
 ```
 
-**А далі насолоджуємось програмуванням на C++ для STM32!**
+**And then we enjoy C++ programming for STM32!**
