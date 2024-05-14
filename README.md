@@ -1,7 +1,7 @@
 # Example creating and configuration C++ project for STM32
 
-1. Create a clean project using STM32CubeIDE, select MCU/MPU or Board, click `Next'
-2. Name the project and select ``C++'' in the **Target Language** section. Click `Finish'
+1. Create a clean project using STM32CubeIDE, select MCU/MPU or Board, click `Next`
+2. Name the project and select `C++` in the **Target Language** section. Click `Finish`
    
 ![](img/1.png)
 
